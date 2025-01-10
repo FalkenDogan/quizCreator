@@ -16,7 +16,7 @@ import java.util.*;
 public class ExcelQuizProcessor {
 
     public static void main(String[] args) {
-        String excelFilePath = "excelData.xlsx"; // Excel dosya yolu
+        String excelFilePath = "C:/Users/smust/Desktop/vocabulary.xlsx"; // Excel dosya yolu
         String sheetName = "Sayfa1"; // Excel sheet adı
 
         // Excel'den verileri okuyup JSON'a dönüştür
@@ -61,8 +61,8 @@ public class ExcelQuizProcessor {
 
                 // Map oluştur ve listeye ekle
                 Map<String, String> map = new HashMap<>();
-                map.put("Türkisch", turkish);
-                map.put("Deutsch", german);
+                map.put("ColumnA", turkish);
+                map.put("ColumnB", german);
 
                 resultList.add(map);
             }
@@ -86,8 +86,8 @@ public class ExcelQuizProcessor {
         List<Map<String, Object>> quizData = new ArrayList<>();
 
         for (Map<String, String> map : inputList) {
-            String question = map.get("Türkisch");
-            String correctAnswer = map.get("Deutsch");
+            String question = map.get("ColumnA");
+            String correctAnswer = map.get("ColumnB");
 
             // Diğer yanlış seçenekleri seçmek için kullanılan set
             Set<String> optionsSet = new HashSet<>();
@@ -96,7 +96,7 @@ public class ExcelQuizProcessor {
             // Rastgele yanlış seçenekler seçiliyor
             while (optionsSet.size() < 4) {
                 Map<String, String> randomEntry = inputList.get(RandomUtils.nextInt(0, inputList.size()));
-                optionsSet.add(randomEntry.get("Deutsch"));
+                optionsSet.add(randomEntry.get("ColumnB"));
             }
 
             // Şıkları karıştır
